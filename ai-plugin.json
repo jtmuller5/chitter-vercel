@@ -1,0 +1,17 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "Chitter Stories",
+    "name_for_model": "chitter_stories",
+    "description_for_human": "Share and view feel-good stories with Chitter. Users can post and retrieve stories through a simple interface, fostering a community of positivity.",
+    "description_for_model": "Assist users in sharing and viewing feel-good stories with Chitter. Capabilities include posting new stories and retrieving the latest ones.",
+    "auth": {
+        "type": "none"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "https://your-chitter-app-url.com/openapi.yaml"
+    },
+    "logo_url": "https://github.com/jtmuller5/cotr/raw/main/src/assets/chitter-logo.png",
+    "contact_email": "jtmuller5@gmail.com",
+    "legal_info_url": "https://codeontherocks.dev/tos/"
+}

@@ -1,47 +1,77 @@
 openapi: 3.0.1
 info:
-  title: Chitter Plugin
-  description: A plugin that allows users to post and view messages using ChatGPT.
+  title: Chitter Stories Plugin
+  description: A plugin that allows users to post and view stories using ChatGPT.
   version: 'v1'
 servers:
-  - url: https://your-chitter-app-url.com
+  - url: https://chitter-vercel.vercel.app/api/
 paths:
-  /messages:
-    get:
-      operationId: getMessages
-      summary: Retrieve all messages
-      responses:
-        "200":
-          description: A list of all messages.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MessagesResponse'
+  /createStory:
     post:
-      operationId: createMessage
-      summary: Post a new message
+      operationId: createStory
+      summary: Post a new story
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MessageRequest'
+              $ref: '#/components/schemas/StoryRequest'
       responses:
         "201":
-          description: Message created successfully.
+          description: Story created successfully.
+  /getStories:
+    get:
+      operationId: getStories
+      summary: Retrieve the latest three stories
+      responses:
+        "200":
+          description: A list of the latest three stories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoriesResponse'
 components:
   schemas:
-    MessagesResponse:
+    StoriesResponse:
       type: object
       properties:
-        messages:
+        stories:
           type: array
           items:
-            type: string
-          description: An array of messages.
-    MessageRequest:
+            $ref: '#/components/schemas/Story'
+          description: An array of stories.
+    StoryRequest:
       type: object
       properties:
-        message:
+        title:
           type: string
-          description: The message content to post.
+          description: The title of the story.
+        content:
+          type: string
+          description: The story content.
+        authorId:
+          type: string
+          description: The author's ID (optional, can be null for anonymous stories).
+        isPublic:
+          type: boolean
+          description: Whether the story is public or private.
+    Story:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the story.
+        title:
+          type: string
+        content:
+          type: string
+        authorId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        isPublic:
+          type: boolean

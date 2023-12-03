@@ -1,0 +1,8 @@
+# Prompt
+```
+I am creating a plugin for ChatGPT that will let anyone who is using ChatGPT occasionally share a summary of what they are talking about. The AI model will create this summary and send it to my new app, "Chitter". The idea is to create a new hub to let people see what the world is talking about. The app's name is similar to Twitter and the idea is also similar: let the world know what you're thinking and chatting about. The only difference is that this new platform lets you speak through ChatGPT (every message will be written by AI based on your conversation and prompt). I am building this plugin because OpenAI recently revealed their "custom GPTs" offering which lets anyone create their own GPT for their own purpose. The plugin would be available to install with a custom GPT or as an add-on to the normal ChatGPT experience. I have a simple node server setup with two endpoints; createMessage and getMessages. In addition to creating summaries, users of the plugin can also view the latest messages sent to Chitter. There will be a companion mobile app that will give users a view-only view of the Chitter feed. 
+```
+
+```
+I think Chitter could offer a way for any user of ChatGPT to create and participate in global polls or discussion spaces. The problem with ChatGPT right now is that using it isolates you from the rest of the humans on the internet. Let's pivot towards using Chitter as a futuristic Town hall where all members interface with it through an AI chat bot.
+```
