@@ -22,10 +22,18 @@ paths:
   /getStories:
     get:
       operationId: getStories
-      summary: Retrieve the latest three stories
+      summary: Retrieve the latest three stories, optionally filtered by type
+      parameters:
+        - in: query
+          name: type
+          required: false
+          schema:
+            type: string
+            enum: [story, dream, secret, idea]
+          description: The type of stories to filter by (story, dream, secret, idea)
       responses:
         "200":
-          description: A list of the latest three stories.
+          description: A list of the latest three stories, filtered by type if provided.
           content:
             application/json:
               schema:
@@ -75,3 +83,7 @@ components:
           format: date-time
         isPublic:
           type: boolean
+        type:
+          type: string
+          enum: [story, dream, secret, idea]
+          description: The type of the content (story, dream, secret, idea).

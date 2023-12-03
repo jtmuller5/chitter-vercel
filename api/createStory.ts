@@ -7,11 +7,11 @@ const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl!, supabaseKey!);
 
 export default async function (req: VercelRequest, res: VercelResponse) {
-  const { title, content, authorId, isPublic } = req.body;
+  const { title, content, authorId, isPublic, type } = req.body;
 
   // Validate the input
-  if (!title || !content) {
-    res.status(400).send("Title and content are required");
+  if (!title || !content || !type) {
+    res.status(400).send("Title, content, and type are required");
     return;
   }
 
@@ -19,7 +19,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
   const { data, error } = await supabase
     .from('stories')
     .insert([
-      { title, content, authorId, createdAt: new Date(), updatedAt: new Date(), isPublic }
+      { title, content, authorId, createdAt: new Date(), updatedAt: new Date(), isPublic, type }
     ]);
 
   if (error) {
@@ -30,3 +30,4 @@ export default async function (req: VercelRequest, res: VercelResponse) {
   // Send a success message instead of the data
   res.status(201).send("Story added successfully");
 }
+

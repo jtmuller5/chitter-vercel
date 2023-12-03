@@ -6,6 +6,6 @@ type Story = {
     createdAt: Date; // Timestamp for when the story was created
     updatedAt: Date; // Timestamp for when the story was last updated
     isPublic: boolean; // Flag to determine if the story is public or private
-    // Add additional fields as necessary, such as category, tags, etc.
+    type: 'story' | 'dream' | 'secret' | 'idea'; // Type of the content being shared
   };
   

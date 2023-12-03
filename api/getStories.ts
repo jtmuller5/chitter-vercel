@@ -7,12 +7,22 @@ const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl!, supabaseKey!);
 
 export default async function (req: VercelRequest, res: VercelResponse) {
-  // Fetch the last 3 stories from the database
-  const { data, error } = await supabase
+  const { type } = req.query; // Get the type from query parameters
+
+  // Build the query
+  let query = supabase
     .from('stories')
     .select('*')
     .order('createdAt', { ascending: false })
     .limit(3);
+
+  // Apply the type filter if provided
+  if (type) {
+    query = query.eq('type', type);
+  }
+
+  // Execute the query
+  const { data, error } = await query;
 
   if (error) {
     res.status(500).send(error.message);
@@ -21,3 +31,4 @@ export default async function (req: VercelRequest, res: VercelResponse) {
 
   res.status(200).json(data);
 }
+
