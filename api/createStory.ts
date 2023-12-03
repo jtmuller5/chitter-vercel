@@ -27,5 +27,6 @@ export default async function (req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  res.status(201).json(data);
+  // Send a success message instead of the data
+  res.status(201).send("Story added successfully");
 }
