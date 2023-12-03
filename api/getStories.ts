@@ -7,6 +7,11 @@ const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl!, supabaseKey!);
 
 export default async function (req: VercelRequest, res: VercelResponse) {
+
+  res.setHeader('Access-Control-Allow-Origin', process.env.NODE_ENV === 'production'?'https://chat.openai.com':'http://localhost:3001');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
   const { type } = req.query; // Get the type from query parameters
 
   // Build the query

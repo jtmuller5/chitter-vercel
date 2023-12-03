@@ -9,6 +9,10 @@ const supabase = createClient(supabaseUrl!, supabaseKey!);
 export default async function (req: VercelRequest, res: VercelResponse) {
   const { title, content, authorId, isPublic, type } = req.body;
 
+  res.setHeader('Access-Control-Allow-Origin', process.env.NODE_ENV === 'production'?'https://chat.openai.com':'http://localhost:3001');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
   // Validate the input
   if (!title || !content || !type) {
     res.status(400).send("Title, content, and type are required");

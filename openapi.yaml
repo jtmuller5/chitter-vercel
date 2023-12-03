@@ -63,6 +63,10 @@ components:
         isPublic:
           type: boolean
           description: Whether the story is public or private.
+        type:
+          type: string
+          enum: [story, dream, secret, idea]
+          description: The type of the content (story, dream, secret, idea).
     Story:
       type: object
       properties:
